@@ -1,6 +1,6 @@
 # Define the source and destination
 $source = ".\dist\git-helper.bat"
-$destination = "$env:ProgramData\GitHelper"
+$destination = "$env:USERPROFILE\AppData\Local\GitHelper"
 
 # Create the destination directory if it doesn't exist
 if (!(Test-Path -Path $destination)) {
@@ -10,7 +10,7 @@ if (!(Test-Path -Path $destination)) {
 # Copy the Batch file to the destination
 Copy-Item -Path $source -Destination "$destination\git-helper.bat" -Force
 
-# Add the destination to the PATH environment variable
+# Add the destination to the PATH environment variable (User level)
 $path = [Environment]::GetEnvironmentVariable("PATH", [EnvironmentVariableTarget]::User)
 if ($path -notlike "*$destination*") {
     [Environment]::SetEnvironmentVariable("PATH", "$path;$destination", [EnvironmentVariableTarget]::User)
