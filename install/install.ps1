@@ -1,6 +1,6 @@
 # Define the source and destination
 $source = ".\dist\git-helper.bat"
-$destination = "$env:USERPROFILE\AppData\Local\GitHelper"
+$destination = "C:\ProgramData\GitHelper"  # Updated path
 
 # Create the destination directory if it doesn't exist
 if (!(Test-Path -Path $destination)) {
