@@ -17,4 +17,7 @@ if ($path -notlike "*$destination*") {
     Write-Host "Added $destination to PATH"
 }
 
-Write-Host "Git Helper installed successfully! You can now use 'git-helper' globally."
+# Set an alias for git-helper in PowerShell
+Set-Alias -Name git-helper -Value "$destination\git-helper.bat"
+
+Write-Host "Git Helper installed successfully! You can now use 'git-helper' globally in CMD and PowerShell."
