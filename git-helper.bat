@@ -12,4 +12,8 @@ git add .
 git commit -m "%~1"
 git push
 
-echo Changes have been pushed successfully!
+FOR /F "tokens=*" %%g IN ('git push 2^>^&1') DO (
+    IF NOT "%%g"=="Everything up-to-date" (
+        echo %%g
+    )
+)
