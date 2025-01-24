@@ -9,15 +9,15 @@ IF "%~1"=="" (
 
 REM Set the branch name
 SET BRANCH_NAME=%2
-IF "%BRANCH_NAME%"=="" SET BRANCH_NAME=master
+IF "%BRANCH_NAME%"=="" SET BRANCH_NAME=main
 
 REM Run Git commands
 git add .
 git commit -m "%~1"
 git push origin %BRANCH_NAME%
-
-FOR /F "tokens=*" %%g IN ('git push origin %BRANCH_NAME% 2^>^&1') DO (
-    IF NOT "%%g"=="Everything up-to-date" (
-        echo %%g
-    )
+IF ERRORLEVEL 1 (
+    echo Error: Failed to push to the branch %BRANCH_NAME%.
+    exit /b 1
 )
+
+echo Changes pushed successfully!
